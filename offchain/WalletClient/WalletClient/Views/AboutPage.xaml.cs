@@ -56,8 +56,7 @@ namespace WalletClient.Views
 
         private void UpdateDisplay()
         {
-            updatePoints();
-            Device.BeginInvokeOnMainThread(async () =>
+            Device.BeginInvokeOnMainThread(() =>
             {
                 moveCountLabel.Text = moveCount.ToString();
                 pointLabel.Text = point.ToString();
