@@ -23,6 +23,12 @@ namespace WalletClient.Views
         {
             InitializeComponent();
 
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                // HACK: Fix wallet address
+                walletIdEntry.Text = "0xD00CD5841b78d400f0CCEe881408f50aB1dD7B9C";
+            });
+
             var addPointCount = 10;
             timer = new Timer { Interval = 1000 };
             timer.Elapsed += (s, e) =>
@@ -74,7 +80,6 @@ namespace WalletClient.Views
         }
         private async void updatePoints()
         {
-
             var rsp = await httpClient.GetAsync($"{Endpoint}/api/wallet/{walletId}");
             var rspText = await rsp.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<GetPointResponse>(rspText, new JsonSerializerOptions

@@ -15,6 +15,8 @@
 
                 <Label Text="Wallet Id"/>
                 <Label x:Name="walletIdLabel" FontAttributes="Bold" Text="{Binding Mode=TwoWay}"/>
+
+                <Path HeightRequest="1" BackgroundColor="LightGray" Margin="-30,10"/>
                 
                 <Label Text="Move count" Margin="0,10,0,0"/>
                 <StackLayout Orientation="Horizontal">
@@ -22,8 +24,12 @@
                     <Label Text="meter"/>
                 </StackLayout>
 
+                <Path HeightRequest="1" BackgroundColor="LightGray" Margin="-30,10"/>
+
                 <Label Text="Points"  Margin="0,10,0,0"/>
                 <Label x:Name="pointLabel" FontAttributes="Bold" Text="{Binding Mode=TwoWay}"/>
+
+                <Path HeightRequest="1" BackgroundColor="LightGray" Margin="-30,10"/>
 
             </StackLayout>
 
