@@ -21,7 +21,9 @@ namespace ShoppingOnline.Controllers
         {
             var trackingId = Guid.NewGuid().ToString();
             track.AddBuyTracking(trackingId, request);
-            await pointService.Buy(request.ProductId, request.WalletAddress, 1);
+            var productPrice = 1;
+            await pointService.Buy(request.ProductId, request.WalletAddress, productPrice);
+            track.UpdateBalance(request.WalletAddress, -productPrice);
             return new TrackingResponse(request)
             {
                 TrackingId = trackingId,
