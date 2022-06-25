@@ -1,52 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WalletClient.Views.AboutPage"
-             xmlns:vm="clr-namespace:WalletClient.ViewModels"
-             Title="{Binding Title}">
-    
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             x:Class="WalletClient.Views.AboutPage">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
+    <ScrollView Grid.Row="1">
+        <StackLayout Orientation="Vertical" Padding="30" Spacing="10">
+
+            <StackLayout x:Name="InputMode" IsVisible="true">
+                <Entry x:Name="walletIdEntry" Placeholder="Your wallet id" Text="{Binding Mode=TwoWay}"/>
+                <Button x:Name="submitBtn" Text="Submit"/>
             </StackLayout>
+
+            <StackLayout x:Name="WalletDetailMode" IsVisible="false">
+
+                <Label Text="Wallet Id"/>
+                <Label x:Name="walletIdLabel" FontAttributes="Bold" Text="{Binding Mode=TwoWay}"/>
+                
+                <Label Text="Move count" Margin="0,10,0,0"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="moveCountLabel" FontAttributes="Bold" Text="{Binding Mode=TwoWay}"/>
+                    <Label Text="meter"/>
+                </StackLayout>
+
+                <Label Text="Points"  Margin="0,10,0,0"/>
+                <Label x:Name="pointLabel" FontAttributes="Bold" Text="{Binding Mode=TwoWay}"/>
+
+            </StackLayout>
+
         </StackLayout>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+    </ScrollView>
 
 </ContentPage>
