@@ -6,16 +6,15 @@ namespace ShoppingOnline.Services
 {
     public class T3PointService : IPointService
     {
-        private const string nodeUrl = "http://127.0.0.1:7545";
         private Web3 web3;
         private string[] accounts;
         private string ownerAccount;
 
         public string SmartContractAddress { get; }
 
-        public T3PointService(string smartContractAddress)
+        public T3PointService(string nodeEndpoint, string smartContractAddress)
         {
-            web3 = new Web3(nodeUrl);
+            web3 = new Web3(nodeEndpoint);
             SmartContractAddress = smartContractAddress;
         }
 
@@ -23,6 +22,19 @@ namespace ShoppingOnline.Services
         {
             accounts = await web3.Eth.Accounts.SendRequestAsync();
             ownerAccount = accounts[0];
+        }
+
+        public async Task<TransactionReceipt> AddPoint(string toAccount, int amount)
+        {
+            var callback = web3.Eth.GetContractTransactionHandler<MintFunction>();
+            var result = await callback.SendRequestAndWaitForReceiptAsync(SmartContractAddress,
+                new MintFunction
+                {
+                    FromAddress = ownerAccount,
+                    To = toAccount,
+                    Amount = amount,
+                });
+            return result;
         }
 
         public async Task<TransactionReceipt> Buy(string productId, string fromAccount, int amount)

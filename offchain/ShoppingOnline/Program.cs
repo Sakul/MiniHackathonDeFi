@@ -1,7 +1,9 @@
 using ShoppingOnline.Services;
 
-// HACK: Smart contract address
-var pointService = new T3PointService("0xB11F07C9A0f7626de0B1d03aAdF1858c2D95594b");
+// HACK: Configuration
+const string nodeEndpoint = "http://127.0.0.1:7545";
+const string smartContractAddress = "0xB11F07C9A0f7626de0B1d03aAdF1858c2D95594b";
+var pointService = new T3PointService(nodeEndpoint, smartContractAddress);
 await pointService.Initialize();
 
 var builder = WebApplication.CreateBuilder(args);

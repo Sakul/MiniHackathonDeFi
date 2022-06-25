@@ -7,21 +7,21 @@ namespace ShoppingOnline.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ShoppingController : ControllerBase
+    public class WalletController : ControllerBase
     {
         private readonly IPointService pointService;
 
-        public ShoppingController(IPointService pointService)
+        public WalletController(IPointService pointService)
         {
             this.pointService = pointService;
         }
 
         [HttpPost]
-        public async Task<TrackingResponse> Buy([FromBody] BuyRequest request)
+        public async Task<TrackingResponse> AddPoint([FromBody] AddPointRequest request)
         {
             var trackingId = Guid.NewGuid().ToString();
-            track.AddBuyTracking(trackingId, request);
-            await pointService.Buy(request.ProductId, request.WalletAddress, 1);
+            track.AddPointTracking(trackingId, request);
+            await pointService.AddPoint(request.WalletAddress, request.Points);
             return new TrackingResponse(request)
             {
                 TrackingId = trackingId,
