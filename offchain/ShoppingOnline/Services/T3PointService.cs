@@ -1,6 +1,7 @@
 ﻿using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
 using ShoppingOnline.Services.Functions;
+using track = ShoppingOnline.Repositories.TrackingRepository;
 
 namespace ShoppingOnline.Services
 {
@@ -21,6 +22,7 @@ namespace ShoppingOnline.Services
         public async Task Initialize()
         {
             accounts = await web3.Eth.Accounts.SendRequestAsync();
+            track.Initialize(accounts);
             ownerAccount = accounts[0];
         }
 

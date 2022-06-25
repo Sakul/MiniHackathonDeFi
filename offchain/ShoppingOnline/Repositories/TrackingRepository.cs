@@ -7,6 +7,26 @@ namespace ShoppingOnline.Repositories
         private static Dictionary<string, BuyResult> pointTracks = new();
         private static Dictionary<string, BuyResult> buyTracks = new();
 
+        // HACK: TEMPURARY BALANCE MUST BE REMOVED
+        [Obsolete]
+        private static Dictionary<string, int> accountBalance = new();
+        [Obsolete]
+        public static Dictionary<string, int> AccountBalance => accountBalance;
+
+        [Obsolete]
+        public static void Initialize(IEnumerable<string> accounts)
+            => accountBalance = accounts.ToDictionary(it => it, it => 0);
+        [Obsolete]
+        public static void UpdateBalance(string account, int value)
+        {
+            account = account.ToLower();
+            if (false == accountBalance.ContainsKey(account))
+            {
+                return;
+            }
+            accountBalance[account] = accountBalance[account] + value;
+        }
+
         public static void AddPointTracking(string trackingId, CommunicationBase data)
         {
             if (pointTracks.ContainsKey(trackingId))

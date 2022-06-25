@@ -5,17 +5,25 @@
 ## APIs
 1. Add points to the wallet
 ```
-POST wallet
+POST api/wallet
 {
 	nounce: "abcd",
 	points: int, // จำนวนแต้มที่ได้
 	walletAddress: "0x1234" // รหัสกระเป๋าที่จะได้รับแต้ม
 }
 ```
-
-2. Buy a product
+2. Get current points
 ```
-POST shopping
+GET api/wallet/{address}
+{
+	nounce: "abcd",
+	walletAddress: "0x1234" // รหัสกระเป๋าที่จะขอดูแต้ม
+}
+```
+
+3. Buy a product
+```
+POST api/shopping
 {
 	nounce: "abcd",
 	productId: "prod1", // รหัสสินค้าที่ซื้อ
