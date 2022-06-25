@@ -13,7 +13,7 @@ namespace WalletClient.Views
     {
         private const string Endpoint = "https://b217-223-205-224-244.ap.ngrok.io";
         private Timer timer;
-        private HttpClient httpClient;
+        private HttpClient httpClient = new HttpClient();
 
         private string walletId = string.Empty;
         private int moveCount;
@@ -22,7 +22,6 @@ namespace WalletClient.Views
         public AboutPage()
         {
             InitializeComponent();
-            UpdateDisplay();
 
             var addPointCount = 10;
             timer = new Timer { Interval = 1000 };
@@ -39,8 +38,6 @@ namespace WalletClient.Views
                 }
             };
 
-            httpClient = new HttpClient();
-
             submitBtn.Clicked += (s, e) =>
             {
                 walletId = walletIdEntry.Text;
@@ -54,7 +51,6 @@ namespace WalletClient.Views
                     walletIdLabel.Text = walletId;
                     timer.Start();
                 }
-
             };
         }
 
@@ -79,6 +75,7 @@ namespace WalletClient.Views
         }
         private async void updatePoints()
         {
+
             var rsp = await httpClient.GetAsync($"{Endpoint}/api/wallet/{walletId}");
             var rspText = await rsp.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<GetPointResponse>(rspText, new JsonSerializerOptions
