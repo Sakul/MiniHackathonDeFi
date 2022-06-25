@@ -11,6 +11,7 @@ namespace WalletClient.Views
 {
     public partial class AboutPage : ContentPage
     {
+        private const string Endpoint = "https://b217-223-205-224-244.ap.ngrok.io";
         private Timer timer;
         private HttpClient httpClient;
 
@@ -21,7 +22,6 @@ namespace WalletClient.Views
         public AboutPage()
         {
             InitializeComponent();
-
             UpdateDisplay();
 
             var addPointCount = 10;
@@ -32,7 +32,7 @@ namespace WalletClient.Views
                 UpdateDisplay();
 
                 addPointCount--;
-                if(addPointCount == 0)
+                if (addPointCount == 0)
                 {
                     AddPoint();
                     addPointCount = 10;
@@ -56,11 +56,11 @@ namespace WalletClient.Views
                 }
 
             };
-
         }
 
         private void UpdateDisplay()
         {
+            updatePoints();
             Device.BeginInvokeOnMainThread(async () =>
             {
                 moveCountLabel.Text = moveCount.ToString();
@@ -71,12 +71,32 @@ namespace WalletClient.Views
         private async void AddPoint()
         {
             var serializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            var body = new AddWalletRequest { Nounce = "abcd", Points = 1, WalletAddress = walletId };
-
+            var body = new AddWalletRequest { Nounce = Guid.NewGuid().ToString(), Points = 1, WalletAddress = walletId };
             string json = JsonSerializer.Serialize(body, serializerOptions);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            await httpClient.PostAsync("http://localhost:8100/#/api/wallet", content);
+            await httpClient.PostAsync($"{Endpoint}/api/wallet", content);
+            updatePoints();
         }
+        private async void updatePoints()
+        {
+            var rsp = await httpClient.GetAsync($"{Endpoint}/api/wallet/{walletId}");
+            var rspText = await rsp.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<GetPointResponse>(rspText, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            if (null != result)
+            {
+                point = result.Points;
+            }
+        }
+    }
+
+    public class GetPointResponse
+    {
+        public string Nounce { get; set; }
+        public string WalletAddress { get; set; }
+        public int Points { get; set; }
     }
 
     public class AddWalletRequest
