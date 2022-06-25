@@ -7,17 +7,26 @@
 ```
 POST wallet/mint
 {
-	address: "0x1234", // รหัสกระเป๋า
-	points: int // จำนวนแต้มที่ได้
+	points: int, // จำนวนแต้มที่ได้
+	walletAddress: "0x1234" // รหัสกระเป๋าที่จะได้รับแต้ม
 }
 ```
 
 2. Buy a product
 ```
+// REQUEST
 POST shopping/buy
 {
-	address: "0x1234", // รหัสกระเป๋า
-	productId: "prod1" // รหัสสินค้าที่ซื้อ
+	nounce: "abcd",
+	productId: "prod1", // รหัสสินค้าที่ซื้อ
+	walletAddress: "0x1234" // รหัสกระเป๋าที่ทำการสั่งซื้อ
+}
+
+// RESPONSE
+{
+	nounce: "abcd",
+	walletAddress: "0x1234",
+	trackingId: "track-id-01"
 }
 ```
 

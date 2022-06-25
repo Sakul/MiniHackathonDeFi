@@ -12,4 +12,8 @@
     <PackageReference Include="Nethereum.Web3" Version="4.6.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\ShoppingOnline.Shared\ShoppingOnline.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

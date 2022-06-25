@@ -7,13 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{7153
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{AB6FECBC-9087-4740-AFD1-13CD491F0D4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingOnline", "ShoppingOnline\ShoppingOnline.csproj", "{269E62C5-4F57-44B9-96B9-E64A7480DC1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingOnline", "ShoppingOnline\ShoppingOnline.csproj", "{269E62C5-4F57-44B9-96B9-E64A7480DC1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletClient.Android", "WalletClient\WalletClient.Android\WalletClient.Android.csproj", "{3D43D978-75BB-4F41-920B-02C70619DEC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletClient.iOS", "WalletClient\WalletClient.iOS\WalletClient.iOS.csproj", "{2397024F-987A-4595-BD00-5F74DED257DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletClient", "WalletClient\WalletClient\WalletClient.csproj", "{8D5389BB-8BD7-4EDC-966E-5F4019DA9841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletClient", "WalletClient\WalletClient\WalletClient.csproj", "{8D5389BB-8BD7-4EDC-966E-5F4019DA9841}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{044CB4A3-FCB6-4ECA-BFFD-8ADB29875169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingOnline.Shared", "Shared\ShoppingOnline.Shared\ShoppingOnline.Shared.csproj", "{4276E09B-F39D-4BE4-907E-436755E7EA25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,18 @@ Global
 		{8D5389BB-8BD7-4EDC-966E-5F4019DA9841}.Release|iPhone.Build.0 = Release|Any CPU
 		{8D5389BB-8BD7-4EDC-966E-5F4019DA9841}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{8D5389BB-8BD7-4EDC-966E-5F4019DA9841}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|iPhone.Build.0 = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4276E09B-F39D-4BE4-907E-436755E7EA25}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +104,7 @@ Global
 		{3D43D978-75BB-4F41-920B-02C70619DEC8} = {AB6FECBC-9087-4740-AFD1-13CD491F0D4F}
 		{2397024F-987A-4595-BD00-5F74DED257DF} = {AB6FECBC-9087-4740-AFD1-13CD491F0D4F}
 		{8D5389BB-8BD7-4EDC-966E-5F4019DA9841} = {AB6FECBC-9087-4740-AFD1-13CD491F0D4F}
+		{4276E09B-F39D-4BE4-907E-436755E7EA25} = {044CB4A3-FCB6-4ECA-BFFD-8ADB29875169}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCEAA934-801A-4B0A-B350-55F68F98A692}
