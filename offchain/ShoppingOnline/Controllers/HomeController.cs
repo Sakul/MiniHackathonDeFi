@@ -7,6 +7,7 @@ namespace ShoppingOnline.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public static ProductController productSvc = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,7 +16,8 @@ namespace ShoppingOnline.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var products = productSvc.GetProducts();
+            return View(products.ToList());
         }
 
         public IActionResult Privacy()
