@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingOnline.Services;
 using ShoppingOnline.Shared;
 using track = ShoppingOnline.Repositories.ShoppingRepository;
 
@@ -8,11 +9,19 @@ namespace ShoppingOnline.Controllers
     [ApiController]
     public class ShoppingController : ControllerBase
     {
+        private readonly IPointService pointService;
+
+        public ShoppingController(IPointService pointService)
+        {
+            this.pointService = pointService;
+        }
+
         [HttpPost]
-        public BuyResponse Buy([FromBody] BuyRequest request)
+        public async Task<BuyResponse> Buy([FromBody] BuyRequest request)
         {
             var trackingId = Guid.NewGuid().ToString();
             track.SaveTrack(trackingId, request);
+            await pointService.Buy(request.ProductId, request.WalletAddress, 1);
             return new BuyResponse
             {
                 TrackingId = trackingId,

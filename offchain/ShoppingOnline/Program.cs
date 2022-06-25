@@ -1,7 +1,14 @@
+using ShoppingOnline.Services;
+
+// HACK: Smart contract address
+var pointService = new T3PointService("0xB11F07C9A0f7626de0B1d03aAdF1858c2D95594b");
+await pointService.Initialize();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IPointService>(pointService);
 
 var app = builder.Build();
 
